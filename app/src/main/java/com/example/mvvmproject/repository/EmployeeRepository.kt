@@ -18,4 +18,8 @@ class EmployeeRepository {
     {
         database.employeeDao().addEmployee(employee)
     }
+    suspend fun updateEmployee(employee: Employee)
+    {
+        database.employeeDao().updateEmployee(employee)
+    }
 }
