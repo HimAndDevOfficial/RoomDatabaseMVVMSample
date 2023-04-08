@@ -5,6 +5,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mvvmproject.R
 import com.example.mvvmproject.model.Employee
@@ -15,6 +17,7 @@ class ShowListAdapter: RecyclerView.Adapter<ShowListAdapter.ViewHolder>() {
     private var employeeList= emptyList<Employee>()
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
+        val id:TextView = view.findViewById(R.id.id_person)
         val firstName: TextView = view.findViewById(R.id.first_name)
         val lastName: TextView = view.findViewById(R.id.last_name)
         val age: TextView = view.findViewById(R.id.age)
@@ -31,9 +34,16 @@ class ShowListAdapter: RecyclerView.Adapter<ShowListAdapter.ViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-       holder.firstName.text = employeeList.get(position).firstName.toString()
+        val currentItem = employeeList[position]
+
+        holder.id.text = employeeList.get(position).id.toString()
+        holder.firstName.text = employeeList.get(position).firstName.toString()
         holder.lastName.text = employeeList.get(position).lastName.toString()
         holder.age.text =employeeList.get(position).age.toString()
+        holder.itemView.findViewById<ConstraintLayout>(R.id.rowLayout).setOnClickListener {
+            val action = ShowFragmentDirections.actionNavigationShowToUpdateFragment(currentItem)
+            holder.itemView.findNavController().navigate(action)
+        }
     }
 
     fun setData(employee: List<Employee>) {

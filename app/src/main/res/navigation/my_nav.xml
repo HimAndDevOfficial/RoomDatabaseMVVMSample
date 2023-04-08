@@ -14,7 +14,21 @@
         android:id="@+id/navigation_show"
         android:name="com.example.mvvmproject.fragments.show.ShowFragment"
         android:label="fragment_show"
-        tools:layout="@layout/fragment_show" />
+        tools:layout="@layout/fragment_show" >
+        <action
+            android:id="@+id/action_navigation_show_to_updateFragment"
+            app:destination="@id/updateFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/updateFragment"
+        android:name="com.example.mvvmproject.fragments.update.UpdateFragment"
+        android:label="fragment_update"
+        tools:layout="@layout/fragment_update" >
+        <argument
+            android:name="currentEmployee"
+            app:argType="com.example.mvvmproject.model.Employee" />
+
+    </fragment>
 
 
 </navigation>

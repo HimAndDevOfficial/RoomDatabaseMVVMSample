@@ -31,9 +31,9 @@ class EmployeeViewModel : ViewModel() {
         }
     }
 
-    fun updateEmployee(employee: Employee)
+    suspend fun updateEmployee(employee: Employee)
     {
-        // repository.updatEmployee()
+         repository.updateEmployee(employee)
     }
 
     fun deleteUser(employee: Employee) {
